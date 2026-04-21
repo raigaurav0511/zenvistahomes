@@ -687,69 +687,6 @@
     document.querySelector('nav').style.padding = window.scrollY > 50 ? '12px 60px' : '18px 60px';
   });
 
-  // Passcode Gate
-  (function() {
-    const PASS = 'Jay Shree Ram';
-    const gate = document.getElementById('passcode-gate');
-    const input = document.getElementById('passcode-input');
-    const btn = document.getElementById('passcode-btn');
-    const err = document.getElementById('passcode-err');
-
-    if (sessionStorage.getItem('jsr_unlocked') === '1') {
-      gate.style.display = 'none';
-      return;
-    }
-
-    document.body.style.overflow = 'hidden';
-
-    btn.addEventListener('click', unlock);
-    input.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
-
-    function unlock() {
-      if (input.value.trim() === PASS) {
-        sessionStorage.setItem('jsr_unlocked', '1');
-        gate.style.opacity = '0';
-        gate.style.transition = 'opacity 0.5s';
-        setTimeout(() => { gate.style.display = 'none'; }, 500);
-        document.body.style.overflow = '';
-      } else {
-        err.style.display = 'block';
-        input.value = '';
-        input.focus();
-        setTimeout(() => { err.style.display = 'none'; }, 2000);
-      }
-    }
-  })();
 </script>
-
-<!-- Passcode Gate Overlay -->
-<div id="passcode-gate" style="
-  position:fixed; inset:0; z-index:99999;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  display:flex; align-items:center; justify-content:center; flex-direction:column;
-  font-family:'Inter',sans-serif;
-">
-  <div style="text-align:center; padding:40px; max-width:420px; width:90%;">
-    <div style="font-family:'Playfair Display',serif; font-size:2rem; color:#c9a96e; margin-bottom:8px; font-weight:700;">
-      Zen<span style="color:#fff">Vista</span> Homes
-    </div>
-    <div style="color:#aaa; font-size:0.9rem; margin-bottom:32px; letter-spacing:1px;">PRIVATE ACCESS</div>
-    <input id="passcode-input" type="text" placeholder="Enter passcode…" style="
-      width:100%; padding:14px 18px; border-radius:8px;
-      border:1px solid rgba(201,169,110,0.4); background:rgba(255,255,255,0.05);
-      color:#fff; font-size:1rem; outline:none; text-align:center;
-      letter-spacing:2px;
-    "/>
-    <div id="passcode-err" style="display:none; color:#e74c3c; margin-top:10px; font-size:0.85rem;">
-      Incorrect passcode. Try again.
-    </div>
-    <button id="passcode-btn" style="
-      margin-top:16px; width:100%; padding:14px;
-      background:#c9a96e; color:#1a1a2e; border:none;
-      border-radius:8px; font-size:1rem; font-weight:600;
-      cursor:pointer; letter-spacing:1px;
-    ">ENTER →</button>
-  </div>
-</div>
 </body>
 </html>
