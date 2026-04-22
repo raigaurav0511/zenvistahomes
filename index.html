@@ -25,9 +25,11 @@
       padding: 18px 60px;
       border-bottom: 1px solid rgba(123,158,135,0.2);
     }
-    .logo { font-family: 'Inter', sans-serif; font-size: 1.5rem; color: #fff; text-decoration: none; font-weight: 800; letter-spacing: -0.5px; display: flex; flex-direction: column; line-height: 1.1; }
-    .logo span { color: var(--gold); font-weight: 800; }
-    .logo small { font-size: 0.5rem; letter-spacing: 3px; color: rgba(255,255,255,0.6); font-weight: 400; margin-top: 2px; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .logo-zenvista { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+    .logo-homes { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 800; color: #7b9e87; letter-spacing: -0.5px; }
+    .logo small { font-size: 0.48rem; letter-spacing: 3px; color: rgba(255,255,255,0.55); font-weight: 500; margin-top: 1px; }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
     .nav-links a:hover { color: var(--gold); }
@@ -225,7 +227,16 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">ZenVista<span>Homes</span><small> REAL ESTATE</small></a>
+  <a href="#" class="logo">
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="22,4 4,20 8,20 8,38 18,38 18,28 26,28 26,38 36,38 36,20 40,20" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
+      <line x1="22" y1="4" x2="34" y2="4" stroke="#7b9e87" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="34" y1="4" x2="34" y2="16" stroke="#7b9e87" stroke-width="2.5" stroke-linecap="round"/>
+      <polyline points="24,14 34,4 44,14" fill="none" stroke="#7b9e87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4,40 Q22,34 40,40" stroke="#7b9e87" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text"><span class="logo-zenvista">ZenVista</span><span class="logo-homes">Homes</span><small>REAL ESTATE</small></span>
+  </a>
   <ul class="nav-links">
     <li><a href="#properties">Properties</a></li>
     <li><a href="#services">Services</a></li>
@@ -617,7 +628,16 @@
 <footer>
   <div class="footer-grid">
     <div class="f-brand">
-      <a href="#" class="logo">ZenVista<span>Homes</span><small> REAL ESTATE</small></a>
+      <a href="#" class="logo">
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="22,4 4,20 8,20 8,38 18,38 18,28 26,28 26,38 36,38 36,20 40,20" fill="none" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
+      <line x1="22" y1="4" x2="34" y2="4" stroke="#7b9e87" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="34" y1="4" x2="34" y2="16" stroke="#7b9e87" stroke-width="2.5" stroke-linecap="round"/>
+      <polyline points="24,14 34,4 44,14" fill="none" stroke="#7b9e87" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4,40 Q22,34 40,40" stroke="#7b9e87" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text"><span class="logo-zenvista">ZenVista</span><span class="logo-homes">Homes</span><small>REAL ESTATE</small></span>
+  </a>
       <p>India's premier luxury real estate platform — turning your vision of the perfect home into reality.</p>
       <div class="f-social">
         <a href="#" class="f-soc">in</a>
