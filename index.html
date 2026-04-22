@@ -53,22 +53,23 @@
     /* HERO */
     .hero {
       min-height: 100vh;
-      background: #f5f0e8;
+      background: linear-gradient(rgba(10,20,40,0.62) 0%, rgba(10,20,40,0.55) 100%),
+                  url('https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?w=1800&q=80') center/cover no-repeat;
       display: flex; flex-direction: column; align-items: center; justify-content: center;
       text-align: center; padding: 130px 20px 70px;
     }
     .hero-tag {
-      display: inline-block; border: 1px solid var(--dark); color: var(--dark);
+      display: inline-block; border: 1px solid rgba(255,255,255,0.6); color: #fff;
       font-size: 0.73rem; letter-spacing: 3px; text-transform: uppercase;
       padding: 5px 18px; border-radius: 20px; margin-bottom: 20px;
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2.4rem, 5.5vw, 4rem);
-      color: var(--dark); font-weight: 700; line-height: 1.2; margin-bottom: 16px;
+      color: #fff; font-weight: 700; line-height: 1.2; margin-bottom: 16px;
     }
     .hero h1 em { color: var(--gold); font-style: normal; }
-    .hero p { color: var(--muted); font-size: 1.05rem; max-width: 560px; margin: 0 auto 36px; }
+    .hero p { color: rgba(255,255,255,0.78); font-size: 1.05rem; max-width: 560px; margin: 0 auto 36px; }
 
     /* SEARCH BOX */
     .search-box {
@@ -100,9 +101,9 @@
       transition: background 0.2s; margin-left: 8px;
     }
     .search-btn:hover { background: #15294a; }
-    .popular-searches { margin-top: 18px; color: var(--muted); font-size: 0.82rem; }
-    .popular-searches span { color: var(--dark); cursor: pointer; margin: 0 6px; font-weight: 600; }
-    .popular-searches span:hover { color: var(--gold); }
+    .popular-searches { margin-top: 18px; color: rgba(255,255,255,0.65); font-size: 0.82rem; }
+    .popular-searches span { color: #fff; cursor: pointer; margin: 0 6px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 1px; }
+    .popular-searches span:hover { color: var(--gold); border-bottom-color: var(--gold); }
 
     /* STATS */
     .stats { background: var(--dark); display: flex; justify-content: center; gap: 80px; padding: 34px 40px; flex-wrap: wrap; }
