@@ -293,23 +293,132 @@
     .footer-bottom a { color: rgba(255,255,255,0.32); text-decoration: none; margin-left: 14px; }
     .footer-bottom a:hover { color: var(--gold); }
 
+    /* HAMBURGER */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 6px; background: none; border: none;
+    }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--dark); border-radius: 2px; transition: all 0.3s; }
+    .nav-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+    .mobile-nav { display: none; flex-direction: column; background: #fff; border-top: 1px solid #f0f0f0; }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a { padding: 14px 20px; font-size: 0.9rem; font-weight: 600; color: var(--dark); text-decoration: none; border-bottom: 1px solid #f5f5f5; }
+    .mobile-nav a:last-child { background: var(--dark); color: #fff; text-align: center; padding: 14px; }
+
     @media (max-width: 1024px) {
       .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
     }
+
     @media (max-width: 900px) {
-      .nav-top { padding: 14px 24px; }
-      .nav-tabs { padding: 0 24px; display: none; }
-      section, .testi, .cta, footer { padding-left: 24px; padding-right: 24px; }
-      .stats { gap: 36px; padding: 28px 24px; }
-      .why-grid, .enq-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-top { padding: 8px 20px; }
+      .nav-tabs { display: none; }
+      .nav-hamburger { display: flex; }
+      section { padding: 50px 20px; }
+      .testi { padding: 50px 20px; }
+      .cta { padding: 50px 20px; }
+      footer { padding: 50px 20px 20px; }
+      .stats { gap: 28px; padding: 28px 20px; }
+      .why-grid { grid-template-columns: 1fr; gap: 30px; }
+      .enq-grid { grid-template-columns: 1fr; gap: 30px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+      .proj-grid { grid-template-columns: 1fr; }
+      .projects-head { flex-direction: column; align-items: flex-start; }
     }
-    @media (max-width: 600px) {
-      .nav-right .nav-hide { display: none; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      .city-grid { grid-template-columns: repeat(3, 1fr); }
+
+    @media (max-width: 768px) {
+      /* NAV */
+      .nav-top { padding: 6px 16px; }
+      .nav-post { padding: 8px 14px; font-size: 0.8rem; }
+      .logo img { height: 60px !important; }
+      .logo-zenvista, .logo-homes { font-size: 1.15rem; }
+
+      /* HERO */
+      .hero { padding: 150px 16px 50px; min-height: auto; }
+      .hero h1 { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+      .hero p { font-size: 0.9rem; margin-bottom: 24px; }
+
+      /* SEARCH BOX */
+      .search-tabs-row { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+      .stab { white-space: nowrap; padding: 10px 12px; font-size: 0.78rem; flex-shrink: 0; }
+      .search-fields { flex-direction: column; }
+      .sf { border-right: none !important; border-bottom: 1px solid #eee; width: 100%; min-width: unset; }
+      .search-btn { margin: 6px 0 0; width: 100%; border-radius: 8px; padding: 13px; }
+      .popular-searches { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 2px; }
+
+      /* STATS */
+      .stats { gap: 20px; }
+      .stat-n { font-size: 1.7rem; }
+
+      /* CITY */
+      .city-grid { grid-template-columns: repeat(2, 1fr) !important; }
+
+      /* PROPERTY TYPE */
+      .proptype-grid { gap: 8px; }
+      .pt-card { min-width: 75px; max-width: 100px; padding: 16px 8px; }
+      .pt-icon { font-size: 1.5rem; }
+      .pt-label { font-size: 0.72rem; }
+
+      /* PROPERTIES */
       .prop-grid { grid-template-columns: 1fr; }
+      .props-head { flex-direction: column; align-items: flex-start; }
+
+      /* WHY */
+      .why-img { order: -1; }
+
+      /* SERVICES */
+      .svc-grid { grid-template-columns: 1fr 1fr; }
+
+      /* AGENTS */
+      .agent-grid { grid-template-columns: 1fr 1fr; }
+
+      /* TESTIMONIALS */
+      .testi-grid { grid-template-columns: 1fr; }
+
+      /* ENQUIRY */
+      .form-row { grid-template-columns: 1fr; }
+      .enq-form { padding: 24px 18px; }
+      .enq-form h3 { font-size: 1.2rem; }
+
+      /* CTA */
+      .cta-btns { flex-direction: column; align-items: center; }
+      .cta-gold, .cta-white { width: 100%; max-width: 280px; text-align: center; }
+
+      /* FOOTER */
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .footer-bottom div { margin-top: 8px; }
+      .footer-bottom a { margin-left: 8px; }
+    }
+
+    @media (max-width: 480px) {
+      .logo img { height: 50px !important; }
+      .logo-zenvista, .logo-homes { font-size: 1rem; }
+      .logo small { letter-spacing: 2px; }
+      .nav-post { display: none; }
+
+      .hero { padding: 130px 14px 40px; }
+      section { padding: 40px 14px; }
+      .testi { padding: 40px 14px; }
+      .cta { padding: 40px 14px; }
+      footer { padding: 40px 14px 16px; }
+
+      .stats { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+      .stat { min-width: 40%; }
+
+      .city-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
+      .city-img { height: 80px; }
+
+      .proptype-grid { justify-content: flex-start; }
+      .pt-card { min-width: 70px; max-width: 85px; }
+
+      .svc-grid { grid-template-columns: 1fr; }
+      .agent-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+
+      .sec-title { font-size: 1.5rem !important; }
+      .card-img { height: 180px; }
     }
   </style>
 </head>
@@ -328,6 +437,9 @@
     </a>
     <div class="nav-right">
       <a href="#enquiry" class="nav-post">+ Post Property FREE</a>
+      <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
   <div class="nav-tabs">
@@ -337,6 +449,15 @@
     <a href="#enquiry" class="nav-tab">Rent Out</a>
     <a href="#projects" class="nav-tab">New Projects</a>
     <a href="#agents" class="nav-tab">Find Agents</a>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#properties" onclick="closeMobileNav()">Buy</a>
+    <a href="#properties" onclick="closeMobileNav()">Rent</a>
+    <a href="#enquiry" onclick="closeMobileNav()">Sell</a>
+    <a href="#enquiry" onclick="closeMobileNav()">Rent Out</a>
+    <a href="#projects" onclick="closeMobileNav()">New Projects</a>
+    <a href="#agents" onclick="closeMobileNav()">Find Agents</a>
+    <a href="#enquiry" onclick="closeMobileNav()">+ Post Property FREE</a>
   </div>
 </nav>
 
@@ -1024,6 +1145,16 @@
     btn.textContent = '✓ Enquiry Sent!';
     btn.style.background = '#2d6a4f';
     setTimeout(() => { btn.textContent = 'Send Enquiry →'; btn.style.background = ''; }, 3000);
+  }
+  function toggleMobileNav() {
+    const nav = document.getElementById('mobileNav');
+    const btn = document.getElementById('hamburger');
+    nav.classList.toggle('open');
+    btn.classList.toggle('open');
+  }
+  function closeMobileNav() {
+    document.getElementById('mobileNav').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
   }
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('nav');
