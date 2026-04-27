@@ -1174,7 +1174,7 @@
 
   <div class="ace-proj-grid" style="margin-bottom:50px;">
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('starlit')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="gallery-1.webp" alt="ACE Starlit"/>
         <span class="ace-proj-badge" style="background:#1e3a5f;">Under Construction</span>
@@ -1191,7 +1191,7 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('hanei')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="banner-2.webp" alt="ACE HAN'EI"/>
         <span class="ace-proj-badge" style="background:#1e3a5f;">Under Construction</span>
@@ -1208,7 +1208,7 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('terra')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="Ace-153-1.jpg" alt="ACE Terra"/>
         <span class="ace-proj-badge" style="background:#1e3a5f;">Under Construction</span>
@@ -1225,7 +1225,7 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('verde')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="ACE-Group-Properties-3.jpg" alt="ACE Verde"/>
         <span class="ace-proj-badge" style="background:#1e3a5f;">Under Construction</span>
@@ -1242,7 +1242,7 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('medalleo')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="ACE-Group-Properties-2.jpg" alt="ACE Mahagun Medalleo"/>
         <span class="ace-proj-badge" style="background:#1e3a5f;">Under Construction</span>
@@ -1259,7 +1259,7 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('acreville')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="ACE-Group-Properties-1.jpg" alt="ACE Acreville"/>
         <span class="ace-proj-badge" style="background:#1e3a5f;">Under Construction</span>
@@ -1692,6 +1692,65 @@
   </div>
 </section>
 
+<!-- PROJECT DETAIL MODAL -->
+<div id="projModal" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.55);backdrop-filter:blur(4px);overflow-y:auto;" onclick="closeProjModal(event)">
+  <div id="projModalBox" style="background:#fff;border-radius:20px;max-width:680px;margin:40px auto;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.25);position:relative;">
+    <img id="pmImg" src="" alt="" style="width:100%;height:260px;object-fit:cover;display:block;"/>
+    <div style="padding:28px 30px 32px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px;">
+        <div>
+          <span id="pmBadge" style="background:#1e3a5f;color:#fff;font-size:0.65rem;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px;text-transform:uppercase;">Under Construction</span>
+          <span style="margin-left:8px;background:#e8f5e9;color:#2e7d32;font-size:0.65rem;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px;">✓ RERA Registered</span>
+        </div>
+        <button onclick="document.getElementById('projModal').style.display='none'" style="background:none;border:none;font-size:1.5rem;cursor:pointer;color:#888;line-height:1;">✕</button>
+      </div>
+      <h2 id="pmName" style="font-size:1.5rem;color:#1e3a5f;font-weight:800;margin:12px 0 4px;"></h2>
+      <p id="pmLoc" style="color:#888;font-size:0.87rem;margin-bottom:20px;"></p>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;background:#f7f9fc;border-radius:12px;padding:16px;margin-bottom:20px;">
+        <div style="text-align:center;">
+          <div style="font-size:0.72rem;color:#888;margin-bottom:4px;">Configuration</div>
+          <div id="pmConfig" style="font-weight:700;color:#1e3a5f;font-size:0.95rem;"></div>
+        </div>
+        <div style="text-align:center;border-left:1px solid #e0e7ef;border-right:1px solid #e0e7ef;">
+          <div style="font-size:0.72rem;color:#888;margin-bottom:4px;">Price From</div>
+          <div id="pmPrice" style="font-weight:700;color:#1e3a5f;font-size:0.95rem;"></div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:0.72rem;color:#888;margin-bottom:4px;">Possession</div>
+          <div id="pmPoss" style="font-weight:700;color:#1e3a5f;font-size:0.95rem;"></div>
+        </div>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <div style="font-size:0.78rem;font-weight:700;color:#1e3a5f;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">About the Project</div>
+        <p id="pmDesc" style="font-size:0.87rem;color:#555;line-height:1.7;"></p>
+      </div>
+
+      <div style="margin-bottom:22px;">
+        <div style="font-size:0.78rem;font-weight:700;color:#1e3a5f;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">Key Amenities</div>
+        <div id="pmAmenities" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:24px;">
+        <div style="background:#f7f9fc;border-radius:10px;padding:14px;">
+          <div style="font-size:0.7rem;color:#888;margin-bottom:3px;">Developer</div>
+          <div style="font-weight:700;color:#1e3a5f;font-size:0.88rem;">ACE Group India</div>
+        </div>
+        <div style="background:#f7f9fc;border-radius:10px;padding:14px;">
+          <div style="font-size:0.7rem;color:#888;margin-bottom:3px;">Project Size</div>
+          <div id="pmSize" style="font-weight:700;color:#1e3a5f;font-size:0.88rem;"></div>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:12px;">
+        <button onclick="openConsultModal()" style="flex:1;background:#1e3a5f;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:700;font-size:0.92rem;cursor:pointer;">📞 Get Free Consultation</button>
+        <a href="https://wa.me/919758600261" target="_blank" style="flex:1;background:#25D366;color:#fff;border:none;padding:14px;border-radius:10px;font-weight:700;font-size:0.92rem;cursor:pointer;text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;">💬 WhatsApp Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
@@ -1783,6 +1842,76 @@
     btn.style.background = '#2d6a4f';
     setTimeout(() => { btn.textContent = 'Send Enquiry →'; btn.style.background = ''; }, 3000);
   }
+  const projData = {
+    starlit: {
+      name:"ACE Starlit", loc:"📍 Sector 152, Noida Expressway", img:"gallery-1.webp",
+      badge:"Under Construction", config:"2 & 3 BHK", price:"₹1.80 Cr onwards", poss:"2027",
+      desc:"ACE Starlit is a premium residential project by ACE Group located on the Noida Expressway. Offering spacious 2 & 3 BHK apartments with world-class amenities, the project is designed for modern urban living with excellent connectivity to Delhi and Greater Noida.",
+      amenities:["🏊 Swimming Pool","🏋️ Gymnasium","🌳 Landscaped Gardens","🏸 Sports Courts","👶 Kids Play Area","🔒 24/7 Security","🅿️ Covered Parking","🎭 Clubhouse","🏃 Jogging Track","⚡ Power Backup"],
+      size:"10 Acres · 800+ Units"
+    },
+    hanei: {
+      name:"ACE HAN'EI", loc:"📍 Sector 12, Greater Noida West", img:"banner-2.webp",
+      badge:"Under Construction", config:"3.5 & 4.5 BHK", price:"₹2.51 Cr onwards", poss:"Oct 2028",
+      desc:"ACE HAN'EI is an ultra-luxury residential project inspired by Japanese design philosophy, offering 3.5 & 4.5 BHK residences in Greater Noida West. The project blends tranquility with modern architecture, providing a serene living experience with premium facilities.",
+      amenities:["🏊 Olympic Pool","🧖 Spa & Wellness","🌿 Zen Gardens","🎾 Tennis Court","🍳 Restaurant","🔒 Smart Security","🅿️ Multi-level Parking","🎭 Grand Clubhouse","🏃 Jogging Track","⚡ 100% Power Backup"],
+      size:"12 Acres · 600+ Units"
+    },
+    terra: {
+      name:"ACE Terra", loc:"📍 Sector 22D, Yamuna Expressway", img:"Ace-153-1.jpg",
+      badge:"Under Construction", config:"3 & 4 BHK", price:"₹2.63 Cr onwards", poss:"2028",
+      desc:"ACE Terra is a premium residential development on the Yamuna Expressway offering 3 & 4 BHK apartments with stunning views and top-notch amenities. Strategically located near Jewar Airport and F1 Track, it offers excellent investment potential.",
+      amenities:["🏊 Swimming Pool","🏋️ Fully Equipped Gym","🌳 Green Landscapes","🏸 Badminton Court","👶 Kids Zone","🔒 CCTV Security","🅿️ Parking","🎭 Clubhouse","🏃 Jogging Track","⚡ Power Backup"],
+      size:"8 Acres · 500+ Units"
+    },
+    verde: {
+      name:"ACE Verde", loc:"📍 Sector 22A, Yamuna Expressway", img:"ACE-Group-Properties-3.jpg",
+      badge:"Under Construction", config:"3 & 3.5 BHK", price:"₹2.00 Cr onwards", poss:"Mar 2029",
+      desc:"ACE Verde offers luxurious 3 & 3.5 BHK residences on the Yamuna Expressway. Surrounded by lush greenery and designed with eco-friendly principles, this project provides a perfect balance of nature and luxury for discerning homebuyers.",
+      amenities:["🏊 Pool with Deck","🏋️ Gymnasium","🌱 Eco-friendly Design","🏸 Multi-sport Court","👶 Kids Play Area","🔒 24/7 Security","🅿️ Covered Parking","🎭 Clubhouse","🚴 Cycling Track","⚡ Solar Power"],
+      size:"9 Acres · 550+ Units"
+    },
+    medalleo: {
+      name:"ACE Mahagun Medalleo", loc:"📍 Sector 107, Noida", img:"ACE-Group-Properties-2.jpg",
+      badge:"Under Construction", config:"3 & 4 BHK", price:"₹3.48 Cr onwards", poss:"2029",
+      desc:"ACE Mahagun Medalleo is a joint venture between ACE Group and Mahagun Group, offering premium 3 & 4 BHK residences in Sector 107, Noida. One of the most prestigious addresses in Noida, it features high-rise towers with panoramic city views and world-class amenities.",
+      amenities:["🏊 Rooftop Pool","🧖 Spa & Sauna","🌳 Terrace Gardens","🎾 Tennis Court","🎮 Gaming Zone","🔒 Smart Home Security","🅿️ Multi-level Parking","🎭 Grand Clubhouse","🏃 Running Track","⚡ 100% Power Backup"],
+      size:"14 Acres · 700+ Units"
+    },
+    acreville: {
+      name:"ACE Acreville", loc:"📍 Sector 22A, Yamuna Expressway", img:"ACE-Group-Properties-1.jpg",
+      badge:"Under Construction", config:"Residential Plots", price:"₹2.60 Cr onwards", poss:"Mar 2026",
+      desc:"ACE Acreville offers premium residential plots on the Yamuna Expressway, giving buyers the freedom to build their dream home. Located near the upcoming Jewar Airport, this plotted development is a prime investment opportunity with excellent future appreciation potential.",
+      amenities:["🌳 Gated Township","🏋️ Clubhouse","🏊 Community Pool","🛣️ Wide Internal Roads","💡 Underground Utilities","🔒 24/7 Security","🅿️ Ample Parking","🌿 Green Zones","🏃 Jogging Track","⚡ Power Backup"],
+      size:"20 Acres · 400+ Plots"
+    }
+  };
+
+  function openProjModal(id) {
+    const p = projData[id];
+    if (!p) return;
+    document.getElementById('pmImg').src = p.img;
+    document.getElementById('pmImg').alt = p.name;
+    document.getElementById('pmBadge').textContent = p.badge;
+    document.getElementById('pmName').textContent = p.name;
+    document.getElementById('pmLoc').textContent = p.loc;
+    document.getElementById('pmConfig').textContent = p.config;
+    document.getElementById('pmPrice').textContent = p.price;
+    document.getElementById('pmPoss').textContent = p.poss;
+    document.getElementById('pmDesc').textContent = p.desc;
+    document.getElementById('pmSize').textContent = p.size;
+    const am = document.getElementById('pmAmenities');
+    am.innerHTML = p.amenities.map(a=>`<span style="background:#f0f4f8;border:1px solid #dde5ef;padding:5px 12px;border-radius:20px;font-size:0.78rem;color:#1e3a5f;">${a}</span>`).join('');
+    document.getElementById('projModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeProjModal(e) {
+    if (e.target === document.getElementById('projModal')) {
+      document.getElementById('projModal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+
   function toggleDrop(dropId, wrapId) {
     const drop = document.getElementById(dropId);
     const isOpen = drop.classList.contains('open');
