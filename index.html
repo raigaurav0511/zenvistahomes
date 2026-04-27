@@ -382,53 +382,74 @@
 
     /* HOW WE HELP */
     .help-section {
-      background: #12192c;
-      padding: 70px 60px;
+      background: #fff;
+      padding: 80px 60px;
       text-align: center;
+      position: relative;
     }
+    .help-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #f0f7f3 0%, #fff 50%, #eef3f8 100%);
+      z-index: 0;
+    }
+    .help-section > * { position: relative; z-index: 1; }
     .help-section .sec-label { color: #7b9e87; }
-    .help-section .sec-title { color: #fff; margin-bottom: 10px; }
-    .help-section .sec-sub { color: rgba(255,255,255,0.5); margin: 0 auto 50px; }
+    .help-section .sec-title { color: #1e3a5f; margin-bottom: 10px; }
+    .help-section .sec-sub { color: #6b7280; margin: 0 auto 50px; }
     .help-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 36px;
-      max-width: 1000px;
+      gap: 28px;
+      max-width: 1050px;
       margin: 0 auto;
     }
-    .help-card { display: flex; flex-direction: column; align-items: center; }
+    .help-card {
+      display: flex; flex-direction: column; align-items: center;
+      background: #fff;
+      border-radius: 20px;
+      padding: 36px 24px 32px;
+      box-shadow: 0 4px 24px rgba(30,58,95,0.08);
+      border: 1.5px solid #e8f0ea;
+      transition: all 0.3s;
+    }
+    .help-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(30,58,95,0.14);
+      border-color: #7b9e87;
+    }
     .help-circle {
-      width: 200px; height: 200px; border-radius: 50%;
-      background: rgba(255,255,255,0.06);
-      border: 2px solid rgba(123,158,135,0.3);
+      width: 130px; height: 130px; border-radius: 50%;
+      background: linear-gradient(135deg, #eef6f1 0%, #e8f0ea 100%);
+      border: 2px solid #c8dece;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 28px; position: relative; overflow: hidden;
+      margin-bottom: 24px; position: relative; overflow: hidden;
       transition: all 0.3s;
     }
     .help-card:hover .help-circle {
-      background: rgba(123,158,135,0.12);
+      background: linear-gradient(135deg, #d4ede0 0%, #c8dece 100%);
       border-color: #7b9e87;
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(123,158,135,0.2);
+      box-shadow: 0 8px 24px rgba(123,158,135,0.25);
     }
-    .help-circle svg { width: 130px; height: 130px; }
-    .help-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
-    .help-desc { color: rgba(255,255,255,0.55); font-size: 0.88rem; line-height: 1.75; max-width: 260px; margin-bottom: 22px; }
+    .help-circle svg { width: 80px; height: 80px; }
+    .help-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: #1e3a5f; margin-bottom: 10px; }
+    .help-desc { color: #6b7280; font-size: 0.88rem; line-height: 1.75; max-width: 240px; margin-bottom: 22px; }
     .help-btn {
-      background: #7b9e87; color: #fff; border: none;
-      padding: 11px 28px; border-radius: 4px; font-weight: 700;
+      background: #1e3a5f; color: #fff; border: none;
+      padding: 11px 28px; border-radius: 8px; font-weight: 700;
       font-size: 0.85rem; cursor: pointer; text-decoration: none;
-      transition: background 0.2s; display: inline-block;
+      transition: all 0.2s; display: inline-block;
     }
-    .help-btn:hover { background: #6a8e76; }
+    .help-btn:hover { background: #7b9e87; transform: translateY(-1px); }
     .help-btn-outline {
-      background: transparent; color: #7b9e87;
-      border: 2px solid #7b9e87; padding: 9px 26px;
-      border-radius: 4px; font-weight: 700; font-size: 0.85rem;
+      background: transparent; color: #1e3a5f;
+      border: 2px solid #1e3a5f; padding: 9px 26px;
+      border-radius: 8px; font-weight: 700; font-size: 0.85rem;
       cursor: pointer; text-decoration: none; display: inline-block;
       transition: all 0.2s;
     }
-    .help-btn-outline:hover { background: #7b9e87; color: #fff; }
+    .help-btn-outline:hover { background: #1e3a5f; color: #fff; }
     @media (max-width: 768px) {
       .help-section { padding: 50px 20px; }
       .help-grid { grid-template-columns: 1fr; gap: 40px; }
