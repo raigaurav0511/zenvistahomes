@@ -1286,7 +1286,7 @@
 
   <div class="ace-proj-grid">
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('parkway')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="banner-1.webp" alt="ACE Parkway"/>
         <span class="ace-proj-badge" style="background:#2d6a4f;">Ready to Move</span>
@@ -1303,7 +1303,7 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('divino')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="https://acegroupindia.com/img/slider/ace-divino.webp" alt="ACE Divino" onerror="this.src='ACE-Group-Properties-3.jpg'"/>
         <span class="ace-proj-badge" style="background:#2d6a4f;">Ready to Move</span>
@@ -1320,7 +1320,7 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('palmfloors')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="https://acegroupindia.com/img/slider/ace-palm-floors.webp" alt="ACE Palm Floors" onerror="this.src='ACE-Group-Properties-2.jpg'"/>
         <span class="ace-proj-badge" style="background:#2d6a4f;">Ready to Move</span>
@@ -1337,9 +1337,9 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('golfshire')" style="cursor:pointer;">
       <div class="ace-proj-img">
-        <img src="ACE-Group-Properties-1.jpg" alt="ACE Golfshire"/>
+        <img src="1544253963_ACE_GolfShire_Elevation_Image.jpeg" alt="ACE Golfshire"/>
         <span class="ace-proj-badge" style="background:#2d6a4f;">Ready to Move</span>
         <span class="ace-rera">RERA Registered</span>
       </div>
@@ -1354,7 +1354,7 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('city')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="ACE-Group-Properties-2.jpg" alt="ACE City"/>
         <span class="ace-proj-badge" style="background:#2d6a4f;">Ready to Move</span>
@@ -1371,7 +1371,7 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('aspire')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="ACE-Group-Properties-3.jpg" alt="ACE Aspire"/>
         <span class="ace-proj-badge" style="background:#2d6a4f;">Ready to Move</span>
@@ -1388,7 +1388,7 @@
       </div>
     </div>
 
-    <div class="ace-proj-card">
+    <div class="ace-proj-card" onclick="openProjModal('platinum')" style="cursor:pointer;">
       <div class="ace-proj-img">
         <img src="banner-2.webp" alt="ACE Platinum"/>
         <span class="ace-proj-badge" style="background:#2d6a4f;">Ready to Move</span>
@@ -1884,6 +1884,55 @@
       desc:"ACE Acreville offers premium residential plots on the Yamuna Expressway, giving buyers the freedom to build their dream home. Located near the upcoming Jewar Airport, this plotted development is a prime investment opportunity with excellent future appreciation potential.",
       amenities:["🌳 Gated Township","🏋️ Clubhouse","🏊 Community Pool","🛣️ Wide Internal Roads","💡 Underground Utilities","🔒 24/7 Security","🅿️ Ample Parking","🌿 Green Zones","🏃 Jogging Track","⚡ Power Backup"],
       size:"20 Acres · 400+ Plots"
+    },
+    parkway: {
+      name:"ACE Parkway", loc:"📍 Sector 150, Noida Expressway", img:"banner-1.webp",
+      badge:"Ready to Move", config:"2, 3 & 4 BHK", price:"₹1.63 Cr onwards", poss:"Ready to Move",
+      desc:"ACE Parkway is a premium ready-to-move residential complex in Sector 150, Noida — one of the most sought-after locations on the Noida Expressway. The project offers spacious 2, 3 & 4 BHK apartments with top-class amenities and excellent connectivity to Delhi, Noida, and Greater Noida.",
+      amenities:["🏊 Swimming Pool","🏋️ Gymnasium","🌳 Landscaped Gardens","🏸 Sports Courts","👶 Kids Play Area","🔒 24/7 Security","🅿️ Covered Parking","🎭 Clubhouse","🏃 Jogging Track","⚡ Power Backup"],
+      size:"11 Acres · 900+ Units"
+    },
+    divino: {
+      name:"ACE Divino", loc:"📍 Sector 1, Greater Noida West", img:"Ace-Divino-lift-view.jpg",
+      badge:"Ready to Move", config:"2, 3 & 4 BHK", price:"₹1.14 Cr onwards", poss:"Ready to Move",
+      desc:"ACE Divino is a ready-to-move residential project in Sector 1, Greater Noida West offering luxurious 2, 3 & 4 BHK apartments. The project features world-class amenities and is well-connected to major IT hubs, expressways, and social infrastructure of Greater Noida West.",
+      amenities:["🏊 Swimming Pool","🏋️ Modern Gym","🌿 Green Landscaping","🎭 Clubhouse","👶 Children's Play Area","🔒 Gated Security","🅿️ Parking","🏸 Badminton Court","🏃 Jogging Track","⚡ Power Backup"],
+      size:"10 Acres · 800+ Units"
+    },
+    palmfloors: {
+      name:"ACE Palm Floors", loc:"📍 Sector 89–90, Gurgaon", img:"ACE-Group-Properties-3.jpg",
+      badge:"Ready to Move", config:"2 & 3 BHK Independent Floors", price:"₹1.05 Cr onwards", poss:"Ready to Move",
+      desc:"ACE Palm Floors is a premium low-rise independent floor project in Sector 89-90, Gurugram. Offering 2 & 3 BHK floors with private terrace and basement, it is ideal for those seeking independent living with modern amenities in the heart of Gurugram's rapidly developing corridor.",
+      amenities:["🌳 Landscaped Common Areas","🔒 24/7 Gated Security","🅿️ Dedicated Parking","💡 Power Backup","🌿 Green Open Spaces","🏃 Walking Track","👶 Kids Play Zone","🏋️ Open-air Gym","🛡️ CCTV Surveillance","🚗 Wide Internal Roads"],
+      size:"5 Acres · 200+ Floors"
+    },
+    golfshire: {
+      name:"ACE Golfshire", loc:"📍 Sector 150, Noida Expressway", img:"1544253963_ACE_GolfShire_Elevation_Image.jpeg",
+      badge:"Ready to Move", config:"2, 3 & 4 BHK", price:"₹1.43 Cr onwards", poss:"Ready to Move",
+      desc:"ACE Golfshire is an upscale ready-to-move residential project in Sector 150, Noida, adjacent to the Noida Golf Course. Offering elegantly designed 2, 3 & 4 BHK apartments, the project provides a serene living environment with stunning golf course views and premium lifestyle amenities.",
+      amenities:["⛳ Golf Course View","🏊 Swimming Pool","🏋️ Gymnasium","🌳 Manicured Gardens","🎭 Clubhouse","🔒 24/7 Security","🅿️ Covered Parking","🏸 Multi-sport Court","🏃 Jogging Track","⚡ 100% Power Backup"],
+      size:"10 Acres · 750+ Units"
+    },
+    city: {
+      name:"ACE City", loc:"📍 Sector 1, Greater Noida West", img:"ACE-Group-Properties-2.jpg",
+      badge:"Ready to Move", config:"2 & 3 BHK", price:"₹87.5 L onwards", poss:"Ready to Move",
+      desc:"ACE City is a well-established ready-to-move residential project in Sector 1, Greater Noida West. Offering affordable yet spacious 2 & 3 BHK apartments, this project is perfect for first-time homebuyers and investors looking for good rental yields in the NCR region.",
+      amenities:["🏊 Swimming Pool","🏋️ Gymnasium","🌿 Landscaped Parks","🎭 Clubhouse","👶 Kids Play Area","🔒 Gated Security","🅿️ Parking","🏸 Sports Facilities","🏃 Jogging Track","⚡ Power Backup"],
+      size:"12 Acres · 1200+ Units"
+    },
+    aspire: {
+      name:"ACE Aspire", loc:"📍 Tech Zone 4, Greater Noida West", img:"ACE-Group-Properties-3.jpg",
+      badge:"Ready to Move", config:"2 & 3 BHK", price:"₹80 L onwards", poss:"Ready to Move",
+      desc:"ACE Aspire is a ready-to-move affordable luxury project in Tech Zone 4, Greater Noida West. Designed for modern families, it offers 2 & 3 BHK apartments at competitive pricing with excellent amenities. The project enjoys great connectivity to Noida Expressway and Delhi-NCR.",
+      amenities:["🏊 Swimming Pool","🏋️ Gymnasium","🌳 Green Spaces","🎭 Community Hall","👶 Children's Park","🔒 24/7 Security","🅿️ Parking","🏸 Badminton Court","🏃 Running Track","⚡ Power Backup"],
+      size:"8 Acres · 700+ Units"
+    },
+    platinum: {
+      name:"ACE Platinum", loc:"📍 Zeta 1, Greater Noida", img:"banner-2.webp",
+      badge:"Ready to Move", config:"2 & 3 BHK", price:"Available on Request", poss:"Ready to Move",
+      desc:"ACE Platinum is a premium ready-to-move residential project located in the prime Zeta 1 sector of Greater Noida. Offering well-designed 2 & 3 BHK apartments with modern amenities, it is an excellent choice for homebuyers and investors seeking resale properties in Greater Noida.",
+      amenities:["🏊 Swimming Pool","🏋️ Gym","🌳 Landscaped Gardens","🎭 Clubhouse","👶 Kids Play Area","🔒 Security","🅿️ Parking","🏸 Sports Court","🏃 Jogging Track","⚡ Power Backup"],
+      size:"9 Acres · 600+ Units"
     }
   };
 
