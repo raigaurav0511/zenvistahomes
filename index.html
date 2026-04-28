@@ -1203,7 +1203,7 @@
   </div>
   <div class="prop-grid">
 
-    <div class="card">
+    <div class="card" onclick="openFeatModal('prateek')" style="cursor:pointer;">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80" alt="Prateek Residency" onerror="this.src='https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80'"/>
         <span class="badge badge-sale">For Sale</span>
@@ -1228,7 +1228,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="openFeatModal('skyline')" style="cursor:pointer;">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="Skyline Residency"/>
         <span class="badge badge-new">New Launch</span>
@@ -1253,7 +1253,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="openFeatModal('greenvalley')" style="cursor:pointer;">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=600&q=80" alt="Green Valley Apartment"/>
         <span class="badge badge-rent">For Rent</span>
@@ -1276,7 +1276,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="openFeatModal('luxepalms')" style="cursor:pointer;">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80" alt="Luxe Palms Villa"/>
         <span class="badge badge-sale">For Sale</span>
@@ -1300,7 +1300,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="openFeatModal('vaishali')" style="cursor:pointer;">
       <div class="card-img">
         <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80" alt="Vaishali Heights"/>
         <span class="badge badge-new">New Launch</span>
@@ -1324,7 +1324,7 @@
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="openFeatModal('gaurcity')" style="cursor:pointer;">
       <div class="card-img">
         <img src="https://www.atninfratech.com/gaur-city-2-14th-Avenue/images/04.jpg" alt="Gaur City Apartment" onerror="this.src='https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80'"/>
         <span class="badge badge-rent">For Rent</span>
@@ -2009,6 +2009,89 @@
       size:"9 Acres · 600+ Units"
     }
   };
+
+  const featData = {
+    prateek: {
+      name:"Prateek Residency", loc:"📍 Sector 77, Noida", type:"For Sale",
+      img:"https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&q=80",
+      price:"₹1.38 Cr", config:"3 BHK Apartment", area:"1,760 sqft", floor:"10th Floor",
+      beds:3, baths:2, parking:1,
+      tags:["Ready to Move","Gated Society","RERA Approved"],
+      desc:"Prateek Residency is a well-maintained residential society in Sector 77, Noida. Offering spacious 3 BHK apartments with modern interiors, the property is ready to move in and located in a prime area with excellent metro and road connectivity.",
+      amenities:["🏊 Swimming Pool","🏋️ Gym","🌳 Garden","🔒 24/7 Security","🅿️ Parking","⚡ Power Backup","👶 Play Area","🎭 Clubhouse"]
+    },
+    skyline: {
+      name:"Skyline Residency", loc:"📍 Dwarka, Delhi NCR", type:"New Launch",
+      img:"https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
+      price:"₹3.2 Cr", config:"4 BHK Premium Apartment", area:"2,800 sqft", floor:"15th Floor",
+      beds:4, baths:3, parking:2,
+      tags:["Metro Nearby","Premium","RERA Approved"],
+      desc:"Skyline Residency is a premium new launch project in Dwarka, Delhi. Offering luxurious 4 BHK apartments with high-end finishes, it is strategically located near the metro and major expressways. Ideal for buyers looking for a premium address in the heart of Delhi.",
+      amenities:["🏊 Infinity Pool","🏋️ Fitness Center","🎾 Tennis Court","🌳 Landscaped Gardens","🔒 Smart Security","🅿️ Covered Parking","⚡ 100% Power Backup","🛎️ Concierge"]
+    },
+    greenvalley: {
+      name:"Green Valley Apartment", loc:"📍 Sector Beta, Greater Noida", type:"For Rent",
+      img:"https://images.unsplash.com/photo-1574362848149-11496d93a7c7?w=800&q=80",
+      price:"₹35K/month", config:"3 BHK Apartment", area:"1,650 sqft", floor:"5th Floor",
+      beds:3, baths:2, parking:1,
+      tags:["Fully Furnished","Rent","Greater Noida"],
+      desc:"Green Valley Apartment is a fully furnished 3 BHK apartment available for rent in Sector Beta, Greater Noida. The apartment features modern furniture, modular kitchen, and is located in a well-maintained gated society with all amenities. Perfect for working professionals and families.",
+      amenities:["🛋️ Fully Furnished","🍳 Modular Kitchen","🌳 Garden View","🔒 Gated Security","🅿️ Parking","⚡ Power Backup","📶 High Speed WiFi","🏋️ Gym"]
+    },
+    luxepalms: {
+      name:"Luxe Palms Villa", loc:"📍 Sector 110, Dwarka Expressway", type:"For Sale",
+      img:"https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80",
+      price:"₹2.1 Cr", config:"4 BHK Independent Villa", area:"2,400 sqft", floor:"Ground + 2",
+      beds:4, baths:3, parking:2,
+      tags:["Club House","Independent Villa","RERA Approved"],
+      desc:"Luxe Palms Villa is a stunning 4 BHK independent villa on Dwarka Expressway with premium specifications and a private garden. The villa features a modern design with high-quality fittings, a spacious terrace, and is located in an exclusive gated community with a world-class clubhouse.",
+      amenities:["🏊 Private Pool","🌳 Private Garden","🎭 Clubhouse","🏋️ Gym","🔒 24/7 Security","🅿️ 2 Car Parking","⚡ Power Backup","🎾 Sports Courts"]
+    },
+    vaishali: {
+      name:"Vaishali Heights", loc:"📍 Vaishali, Ghaziabad", type:"New Launch",
+      img:"https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
+      price:"₹88 Lakhs", config:"3 BHK Apartment", area:"1,420 sqft", floor:"8th Floor",
+      beds:3, baths:2, parking:1,
+      tags:["Metro Access","New Launch","RERA Approved"],
+      desc:"Vaishali Heights is a new launch residential project in Vaishali, Ghaziabad. With excellent metro connectivity and modern amenities, this 3 BHK apartment is ideal for first-time homebuyers. The project is RERA registered and offers competitive pricing in one of Ghaziabad's most connected locations.",
+      amenities:["🚇 Metro Access","🏋️ Gym","🌳 Garden","👶 Play Area","🔒 Security","🅿️ Parking","⚡ Power Backup","🎭 Community Hall"]
+    },
+    gaurcity: {
+      name:"Gaur City Apartment", loc:"📍 Noida Extension, Greater Noida", type:"For Rent",
+      img:"https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80",
+      price:"₹28K/month", config:"2 BHK Apartment", area:"1,150 sqft", floor:"3rd Floor",
+      beds:2, baths:2, parking:1,
+      tags:["Semi-Furnished","For Rent","Noida Extension"],
+      desc:"A well-maintained semi-furnished 2 BHK apartment in Gaur City, Noida Extension. Located in one of the largest townships in Greater Noida West, it offers great connectivity to Noida and Delhi. The apartment is available for immediate possession and is ideal for small families.",
+      amenities:["🛋️ Semi-Furnished","🏊 Swimming Pool","🏋️ Gym","🌳 Parks","🔒 Security","🅿️ Parking","⚡ Power Backup","🏃 Jogging Track"]
+    }
+  };
+
+  function openFeatModal(id) {
+    const p = featData[id];
+    if (!p) return;
+    const typeColor = p.type==='For Rent'?'#e67e22':p.type==='New Launch'?'#1e3a5f':'#2d6a4f';
+    document.getElementById('lmImg').src = p.img;
+    document.getElementById('lmImg').alt = p.name;
+    document.getElementById('lmBadge').textContent = p.type;
+    document.getElementById('lmBadge').style.background = typeColor;
+    document.getElementById('lmName').textContent = p.name;
+    document.getElementById('lmLoc').textContent = p.loc;
+    document.getElementById('lmConfig').textContent = p.config;
+    document.getElementById('lmConfig').closest('div').previousElementSibling.textContent = 'Configuration';
+    document.getElementById('lmPrice').textContent = p.price;
+    document.getElementById('lmPoss').textContent = p.area + ' · ' + p.floor;
+    document.getElementById('lmPoss').closest('div').previousElementSibling.textContent = 'Area & Floor';
+    document.getElementById('lmDesc').textContent = p.desc;
+    document.getElementById('lmAmenities').innerHTML =
+      `<div style="margin-bottom:8px;width:100%;display:flex;gap:16px;font-size:0.82rem;color:#555;">
+        <span>🛏 ${p.beds} Beds</span><span>🚿 ${p.baths} Baths</span><span>🚗 ${p.parking} Parking</span>
+       </div>` +
+      p.amenities.map(a=>`<span style="background:#f0f7f3;color:#2d6a4f;padding:5px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;">${a}</span>`).join('') +
+      p.tags.map(t=>`<span style="background:#eef3f8;color:#1e3a5f;padding:5px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;">${t}</span>`).join('');
+    document.getElementById('localModal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
 
   const localData = {
     kingston: {
