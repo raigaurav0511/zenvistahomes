@@ -381,13 +381,14 @@
     /* CLAUDE AI CHATBOT */
     #zv-chat-btn {
       position: fixed; bottom: 28px; right: 28px; z-index: 9999;
-      width: 58px; height: 58px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--dark), #2d4a7a);
-      color: #fff; border: none; cursor: pointer;
-      box-shadow: 0 6px 24px rgba(26,35,64,0.45);
+      width: 62px; height: 62px; border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--dark); cursor: pointer;
+      box-shadow: 0 6px 24px rgba(26,35,64,0.35);
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; transition: all 0.3s;
+      padding: 8px; transition: all 0.3s; overflow: hidden;
     }
+    #zv-chat-btn img { width: 100%; height: 100%; object-fit: contain; }
     #zv-chat-btn:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(26,35,64,0.55); }
     #zv-chat-btn .chat-badge {
       position: absolute; top: -2px; right: -2px;
@@ -415,10 +416,12 @@
     }
     .zv-chat-avatar {
       width: 40px; height: 40px; border-radius: 50%;
-      background: rgba(255,255,255,0.15);
+      background: #fff;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; flex-shrink: 0;
+      flex-shrink: 0; overflow: hidden;
+      padding: 4px;
     }
+    .zv-chat-avatar img { width: 100%; height: 100%; object-fit: contain; }
     .zv-chat-header-info { flex: 1; }
     .zv-chat-header-name { color: #fff; font-weight: 700; font-size: 0.9rem; }
     .zv-chat-header-sub { color: rgba(255,255,255,0.6); font-size: 0.7rem; margin-top: 1px; display: flex; align-items: center; gap: 5px; }
@@ -2606,11 +2609,11 @@
     const btn = document.getElementById('zv-chat-btn');
     if (chatOpen) {
       win.classList.add('open');
-      btn.innerHTML = '<span style="font-size:1.3rem;">✕</span>';
+      btn.innerHTML = '<span style="font-size:1.4rem;color:var(--dark);">✕</span>';
       if (chatMessages.length === 0) addBotMessage("Namaste! 🙏 I'm ZenVista AI, your personal real estate assistant.\n\nAap kaise help kar sakta hun? Ask me about ACE Group projects, prices, locations, or site visits!");
     } else {
       win.classList.remove('open');
-      btn.innerHTML = '🤖<span class="chat-badge">AI</span>';
+      btn.innerHTML = '<img src="logo.png" alt="ZenVista AI" style="width:100%;height:100%;object-fit:contain;"/><span class="chat-badge">AI</span>';
     }
   }
 
@@ -2698,13 +2701,14 @@
 
 <!-- ZenVista AI Chatbot Widget -->
 <button id="zv-chat-btn" onclick="toggleChat()" title="Chat with ZenVista AI">
-  🤖<span class="chat-badge">AI</span>
+  <img src="logo.png" alt="ZenVista AI" style="width:100%;height:100%;object-fit:contain;"/>
+  <span class="chat-badge">AI</span>
 </button>
 
 <div id="zv-chat-window">
   <!-- Header -->
   <div class="zv-chat-header">
-    <div class="zv-chat-avatar">🏠</div>
+    <div class="zv-chat-avatar"><img src="logo.png" alt="ZenVista Homes"/></div>
     <div class="zv-chat-header-info">
       <div class="zv-chat-header-name">ZenVista AI</div>
       <div class="zv-chat-header-sub"><span class="zv-chat-online"></span> Online · Powered by Claude</div>
