@@ -26,7 +26,7 @@
     }
     .nav-top {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 8px 60px;
+      padding: 10px 60px; gap: 24px;
     }
     .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
     .logo-text { display: flex; flex-direction: column; line-height: 1.1; }
@@ -39,13 +39,13 @@
     .nav-post { background: var(--dark); color: #fff !important; padding: 9px 22px; border-radius: 4px; font-weight: 600; font-size: 0.86rem; }
     .nav-post:hover { background: #15294a !important; color: #fff !important; }
     .nav-tabs {
-      display: flex; gap: 0; background: #fff;
-      border-top: 1px solid rgba(123,158,135,0.15);
-      padding: 0 60px;
+      display: flex; gap: 0; background: transparent;
+      border-top: none; padding: 0; align-items: center;
     }
     .nav-tab {
-      padding: 10px 22px; font-size: 0.88rem; font-weight: 600; color: var(--muted);
+      padding: 8px 18px; font-size: 0.88rem; font-weight: 600; color: var(--muted);
       text-decoration: none; border-bottom: 3px solid transparent; transition: all 0.2s;
+      white-space: nowrap;
     }
     .nav-tab:hover, .nav-tab.active { color: var(--dark); border-bottom-color: var(--dark); }
     .nav-tab.rent:hover, .nav-tab.rent.active { color: var(--gold); border-bottom-color: var(--gold); }
@@ -621,22 +621,22 @@
 <!-- NAV -->
 <nav>
   <div class="nav-top">
-    <a href="#" class="logo" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
-      <img src="logo.png" alt="ZenVista Homes" style="height:140px;width:auto;display:block;"/>
-      <span style="font-size:2rem;font-weight:900;letter-spacing:-1px;line-height:1;"><span style="color:#1e3a5f;">ZenVista</span><span style="color:#7b9e87;">Homes</span></span>
+    <a href="#" class="logo" style="display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0;">
+      <img src="logo.png" alt="ZenVista Homes" style="height:60px;width:auto;display:block;"/>
+      <span style="font-size:1.6rem;font-weight:900;letter-spacing:-0.5px;line-height:1;"><span style="color:#1e3a5f;">ZenVista</span><span style="color:#7b9e87;">Homes</span></span>
     </a>
+    <div class="nav-tabs">
+      <a href="#properties" class="nav-tab active">Buy</a>
+      <a href="#properties" class="nav-tab rent">Rent</a>
+      <a href="#enquiry" class="nav-tab">Sell</a>
+      <a href="#ace-group" class="nav-tab">New Projects</a>
+    </div>
     <div class="nav-right">
       <a href="#enquiry" class="nav-post">+ Post Property FREE</a>
       <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
     </div>
-  </div>
-  <div class="nav-tabs">
-    <a href="#properties" class="nav-tab active">Buy</a>
-    <a href="#properties" class="nav-tab rent">Rent</a>
-    <a href="#enquiry" class="nav-tab">Sell</a>
-    <a href="#projects" class="nav-tab">New Projects</a>
   </div>
   <div class="mobile-nav" id="mobileNav">
     <a href="#properties" onclick="closeMobileNav()">Buy</a>
