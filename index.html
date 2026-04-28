@@ -390,6 +390,19 @@
     }
     #zv-chat-btn img { width: 100%; height: 100%; object-fit: contain; }
     #zv-chat-btn:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(26,35,64,0.55); }
+    #zv-chat-btn::after {
+      content: '';
+      position: absolute; inset: -4px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      animation: chatPulse 1.8s ease-out infinite;
+      pointer-events: none;
+    }
+    @keyframes chatPulse {
+      0%   { transform: scale(1);   opacity: 0.9; }
+      70%  { transform: scale(1.5); opacity: 0; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
     #zv-chat-btn .chat-badge {
       position: absolute; top: -2px; right: -2px;
       background: var(--gold); color: #fff; font-size: 0.55rem;
