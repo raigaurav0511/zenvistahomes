@@ -378,6 +378,102 @@
     .cta-white { background: transparent; border: 2px solid rgba(255,255,255,0.4); color: #fff; padding: 11px 32px; border-radius: 4px; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.2s; }
     .cta-white:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
 
+    /* CLAUDE AI CHATBOT */
+    #zv-chat-btn {
+      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--dark), #2d4a7a);
+      color: #fff; border: none; cursor: pointer;
+      box-shadow: 0 6px 24px rgba(26,35,64,0.45);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; transition: all 0.3s;
+    }
+    #zv-chat-btn:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(26,35,64,0.55); }
+    #zv-chat-btn .chat-badge {
+      position: absolute; top: -2px; right: -2px;
+      background: var(--gold); color: #fff; font-size: 0.55rem;
+      font-weight: 800; padding: 2px 5px; border-radius: 8px;
+      letter-spacing: 0.3px; font-family: 'Jost', sans-serif;
+    }
+    #zv-chat-window {
+      position: fixed; bottom: 100px; right: 28px; z-index: 9998;
+      width: 360px; max-height: 520px;
+      background: #fff; border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+      display: none; flex-direction: column; overflow: hidden;
+      border: 1px solid #e8eaf0;
+      animation: chatSlideUp 0.3s ease;
+    }
+    @keyframes chatSlideUp {
+      from { opacity:0; transform: translateY(20px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    #zv-chat-window.open { display: flex; }
+    .zv-chat-header {
+      background: linear-gradient(135deg, var(--dark) 0%, #2d4a7a 100%);
+      padding: 16px 18px; display: flex; align-items: center; gap: 12px;
+    }
+    .zv-chat-avatar {
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .zv-chat-header-info { flex: 1; }
+    .zv-chat-header-name { color: #fff; font-weight: 700; font-size: 0.9rem; }
+    .zv-chat-header-sub { color: rgba(255,255,255,0.6); font-size: 0.7rem; margin-top: 1px; display: flex; align-items: center; gap: 5px; }
+    .zv-chat-online { width: 7px; height: 7px; background: #4ade80; border-radius: 50%; display: inline-block; }
+    .zv-chat-close { color: rgba(255,255,255,0.6); background: none; border: none; cursor: pointer; font-size: 1.2rem; padding: 2px 6px; border-radius: 6px; transition: all 0.2s; }
+    .zv-chat-close:hover { color: #fff; background: rgba(255,255,255,0.1); }
+    .zv-chat-messages {
+      flex: 1; overflow-y: auto; padding: 16px 14px;
+      display: flex; flex-direction: column; gap: 10px;
+      background: #f8f9fc; max-height: 340px;
+    }
+    .zv-chat-messages::-webkit-scrollbar { width: 4px; }
+    .zv-chat-messages::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
+    .zv-msg { max-width: 82%; }
+    .zv-msg.bot { align-self: flex-start; }
+    .zv-msg.user { align-self: flex-end; }
+    .zv-msg-bubble {
+      padding: 10px 14px; border-radius: 14px;
+      font-size: 0.82rem; line-height: 1.6;
+    }
+    .zv-msg.bot .zv-msg-bubble { background: #fff; color: var(--text); border: 1px solid #eaecf0; border-radius: 4px 14px 14px 14px; }
+    .zv-msg.user .zv-msg-bubble { background: var(--dark); color: #fff; border-radius: 14px 4px 14px 14px; }
+    .zv-msg-time { font-size: 0.65rem; color: #aaa; margin-top: 4px; padding: 0 4px; }
+    .zv-msg.user .zv-msg-time { text-align: right; }
+    .zv-typing { display: flex; gap: 4px; align-items: center; padding: 10px 14px; background: #fff; border: 1px solid #eaecf0; border-radius: 4px 14px 14px 14px; width: fit-content; }
+    .zv-typing span { width: 7px; height: 7px; background: #bbb; border-radius: 50%; animation: zvTyping 1.2s infinite; }
+    .zv-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .zv-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes zvTyping { 0%,60%,100%{ transform:translateY(0); } 30%{ transform:translateY(-6px); } }
+    .zv-chat-input-area {
+      padding: 12px 14px; border-top: 1px solid #eef0f4;
+      background: #fff; display: flex; gap: 8px; align-items: flex-end;
+    }
+    #zv-chat-input {
+      flex: 1; border: 1.5px solid #e0e3ea; border-radius: 10px;
+      padding: 9px 12px; font-size: 0.82rem; font-family: 'Jost', sans-serif;
+      resize: none; outline: none; max-height: 80px; color: var(--text);
+      transition: border 0.2s;
+    }
+    #zv-chat-input:focus { border-color: var(--dark); }
+    #zv-chat-send {
+      background: var(--dark); color: #fff; border: none;
+      width: 38px; height: 38px; border-radius: 10px;
+      cursor: pointer; font-size: 1rem; transition: all 0.2s;
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    }
+    #zv-chat-send:hover { background: var(--gold); }
+    .zv-quick-replies { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 10px; background: #f8f9fc; }
+    .zv-qr { background: #fff; border: 1px solid #dde0e8; color: var(--dark); font-size: 0.72rem; padding: 5px 10px; border-radius: 20px; cursor: pointer; transition: all 0.2s; font-family: 'Jost', sans-serif; white-space: nowrap; }
+    .zv-qr:hover { background: var(--dark); color: #fff; border-color: var(--dark); }
+    @media (max-width: 480px) {
+      #zv-chat-window { width: calc(100vw - 32px); right: 16px; bottom: 90px; }
+      #zv-chat-btn { bottom: 20px; right: 16px; }
+    }
+
     /* FOOTER */
     footer { background: var(--dark); color: rgba(255,255,255,0.55); padding: 56px 60px 0; }
     .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1.5fr; gap: 40px; margin-bottom: 48px; }
@@ -2500,6 +2596,139 @@
     if (e.target === this) closeConsultModal();
   });
 
+  // ── ZenVista AI Chatbot ──
+  const chatMessages = [];
+  let chatOpen = false;
+
+  function toggleChat() {
+    chatOpen = !chatOpen;
+    const win = document.getElementById('zv-chat-window');
+    const btn = document.getElementById('zv-chat-btn');
+    if (chatOpen) {
+      win.classList.add('open');
+      btn.innerHTML = '<span style="font-size:1.3rem;">✕</span>';
+      if (chatMessages.length === 0) addBotMessage("Namaste! 🙏 I'm ZenVista AI, your personal real estate assistant.\n\nAap kaise help kar sakta hun? Ask me about ACE Group projects, prices, locations, or site visits!");
+    } else {
+      win.classList.remove('open');
+      btn.innerHTML = '🤖<span class="chat-badge">AI</span>';
+    }
+  }
+
+  function addBotMessage(text) {
+    const msgs = document.getElementById('zv-chat-msgs');
+    const time = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    const div = document.createElement('div');
+    div.className = 'zv-msg bot';
+    div.innerHTML = `<div class="zv-msg-bubble">${text.replace(/\n/g,'<br/>')}</div><div class="zv-msg-time">${time}</div>`;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    chatMessages.push({ role:'assistant', content: text });
+  }
+
+  function addUserMessage(text) {
+    const msgs = document.getElementById('zv-chat-msgs');
+    const time = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    const div = document.createElement('div');
+    div.className = 'zv-msg user';
+    div.innerHTML = `<div class="zv-msg-bubble">${text}</div><div class="zv-msg-time">${time}</div>`;
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+    chatMessages.push({ role:'user', content: text });
+  }
+
+  function showTyping() {
+    const msgs = document.getElementById('zv-chat-msgs');
+    const div = document.createElement('div');
+    div.className = 'zv-msg bot'; div.id = 'zv-typing';
+    div.innerHTML = '<div class="zv-typing"><span></span><span></span><span></span></div>';
+    msgs.appendChild(div);
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+
+  function hideTyping() {
+    const t = document.getElementById('zv-typing');
+    if (t) t.remove();
+  }
+
+  async function sendChat() {
+    const input = document.getElementById('zv-chat-input');
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    input.style.height = 'auto';
+    document.getElementById('zv-quick-replies').style.display = 'none';
+    addUserMessage(text);
+    showTyping();
+    document.getElementById('zv-chat-send').disabled = true;
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ messages: chatMessages.filter(m => m.role !== 'assistant' || chatMessages.indexOf(m) > chatMessages.length - 10) })
+      });
+      const data = await res.json();
+      hideTyping();
+      addBotMessage(data.reply || 'Sorry, kuch issue aa gaya. Please call +91 97586 00261.');
+    } catch(e) {
+      hideTyping();
+      addBotMessage('Network issue. Please try again or call +91 97586 00261.');
+    }
+    document.getElementById('zv-chat-send').disabled = false;
+  }
+
+  function quickReply(text) {
+    document.getElementById('zv-chat-input').value = text;
+    sendChat();
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('zv-chat-input');
+    if (input) {
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendChat(); }
+      });
+      input.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = Math.min(this.scrollHeight, 80) + 'px';
+      });
+    }
+  });
+
 </script>
+
+<!-- ZenVista AI Chatbot Widget -->
+<button id="zv-chat-btn" onclick="toggleChat()" title="Chat with ZenVista AI">
+  🤖<span class="chat-badge">AI</span>
+</button>
+
+<div id="zv-chat-window">
+  <!-- Header -->
+  <div class="zv-chat-header">
+    <div class="zv-chat-avatar">🏠</div>
+    <div class="zv-chat-header-info">
+      <div class="zv-chat-header-name">ZenVista AI</div>
+      <div class="zv-chat-header-sub"><span class="zv-chat-online"></span> Online · Powered by Claude</div>
+    </div>
+    <button class="zv-chat-close" onclick="toggleChat()">✕</button>
+  </div>
+
+  <!-- Messages -->
+  <div class="zv-chat-messages" id="zv-chat-msgs"></div>
+
+  <!-- Quick Replies -->
+  <div class="zv-quick-replies" id="zv-quick-replies">
+    <button class="zv-qr" onclick="quickReply('ACE projects Yamuna Expressway mein kaunse hain?')">🏙️ Yamuna Projects</button>
+    <button class="zv-qr" onclick="quickReply('Ready to move projects dikhao')">✅ Ready to Move</button>
+    <button class="zv-qr" onclick="quickReply('Site visit book karna hai')">📅 Site Visit</button>
+    <button class="zv-qr" onclick="quickReply('Budget 1-2 Cr mein kya milega?')">💰 Budget 1-2 Cr</button>
+  </div>
+
+  <!-- Input -->
+  <div class="zv-chat-input-area">
+    <textarea id="zv-chat-input" rows="1" placeholder="Type a message..."></textarea>
+    <button id="zv-chat-send" onclick="sendChat()">➤</button>
+  </div>
+</div>
+
 </body>
 </html>
