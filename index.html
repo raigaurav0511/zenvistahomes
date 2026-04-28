@@ -2152,12 +2152,12 @@
   const cityProjects = {
     noida:       ['starlit','medalleo','parkway','golfshire'],
     noidaext:    ['hanei','divino','city','aspire'],
-    ghaziabad:   ['starlit','medalleo'],
+    ghaziabad:   [],
     yamuna:      ['terra','verde','acreville'],
-    greaternoida:['platinum','divino','city','aspire','hanei'],
-    delhi:       ['parkway','golfshire','medalleo'],
+    greaternoida:['platinum','hanei'],
+    delhi:       [],
     gurgaon:     ['palmfloors'],
-    dwarka:      ['parkway','palmfloors']
+    dwarka:      ['palmfloors']
   };
   const cityNames = {
     noida:'Noida', noidaext:'Noida Extension', ghaziabad:'Ghaziabad',
@@ -2170,6 +2170,20 @@
     const title = cityNames[cityKey] || cityKey;
     document.getElementById('cityModalTitle').textContent = title;
     const body = document.getElementById('cityModalBody');
+    if (ids.length === 0) {
+      body.style.display = 'block';
+      body.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:40px 20px;">
+        <div style="font-size:3rem;margin-bottom:16px;">🏗️</div>
+        <h3 style="color:#1e3a5f;font-family:'Playfair Display',serif;margin-bottom:8px;">Coming Soon in ${title}</h3>
+        <p style="color:#6b7280;margin-bottom:24px;">We're expanding our listings in this area. Contact us for the latest availability.</p>
+        <a href="tel:+919758600261" style="background:#1e3a5f;color:#fff;padding:12px 28px;border-radius:10px;font-weight:700;text-decoration:none;margin-right:10px;">📞 Call Us</a>
+        <a href="https://wa.me/919758600261" style="background:#25d366;color:#fff;padding:12px 28px;border-radius:10px;font-weight:700;text-decoration:none;">💬 WhatsApp</a>
+      </div>`;
+      document.getElementById('cityModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      return;
+    }
+    body.style.display = 'grid';
     body.innerHTML = ids.map(id => {
       const p = projData[id];
       if (!p) return '';
