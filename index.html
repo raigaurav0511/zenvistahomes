@@ -165,16 +165,16 @@
 
     /* PROPERTY TYPE ICONS */
     .proptype-section { background: var(--bg); }
-    .proptype-grid { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; justify-content: center; }
+    .proptype-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
     .pt-card {
-      background: #fff; border-radius: 10px; padding: 22px 20px; text-align: center;
-      min-width: 110px; flex: 1; max-width: 130px; cursor: pointer;
-      border: 1.5px solid #eee; transition: all 0.22s; text-decoration: none; color: var(--text);
+      background: #fff; border-radius: 14px; padding: 28px 16px; text-align: center;
+      cursor: pointer; border: 1.5px solid #eee; transition: all 0.22s;
+      text-decoration: none; color: var(--text); display: flex; flex-direction: column; align-items: center;
     }
-    .pt-card:hover { border-color: var(--dark); background: var(--dark); color: #fff; transform: translateY(-3px); }
+    .pt-card:hover { border-color: var(--dark); background: var(--dark); color: #fff; transform: translateY(-4px); box-shadow: 0 8px 24px rgba(30,58,95,0.15); }
     .pt-card:hover .pt-label { color: #fff; }
-    .pt-icon { font-size: 1.8rem; margin-bottom: 8px; }
-    .pt-label { font-size: 0.8rem; font-weight: 600; color: var(--dark); }
+    .pt-icon { font-size: 2.2rem; margin-bottom: 10px; }
+    .pt-label { font-size: 0.82rem; font-weight: 700; color: var(--dark); }
 
     /* PROPERTIES */
     .props-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 36px; flex-wrap: wrap; gap: 16px; }
@@ -549,10 +549,10 @@
       .city-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 10px; }
 
       /* PROPERTY TYPE */
-      .proptype-grid { gap: 8px; }
-      .pt-card { min-width: 75px; max-width: 100px; padding: 16px 8px; }
-      .pt-icon { font-size: 1.5rem; }
-      .pt-label { font-size: 0.72rem; }
+      .proptype-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .pt-card { padding: 20px 12px; }
+      .pt-icon { font-size: 1.8rem; }
+      .pt-label { font-size: 0.76rem; }
 
       /* PROPERTIES */
       .prop-grid { grid-template-columns: 1fr; }
@@ -623,7 +623,7 @@
   <div class="nav-top">
     <a href="#" class="logo" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
       <img src="logo.png" alt="ZenVista Homes" style="height:140px;width:auto;display:block;"/>
-      <span style="font-size:1.55rem;font-weight:800;letter-spacing:-0.5px;line-height:1;"><span style="color:#1e3a5f;">ZenVista</span><span style="color:#7b9e87;">Homes</span></span>
+      <span style="font-size:2rem;font-weight:900;letter-spacing:-1px;line-height:1;"><span style="color:#1e3a5f;">ZenVista</span><span style="color:#7b9e87;">Homes</span></span>
     </a>
     <div class="nav-right">
       <a href="#enquiry" class="nav-post">+ Post Property FREE</a>
