@@ -2664,7 +2664,7 @@
   // ── ZenVista AI Chatbot ──
   const chatMessages = [];
   let chatOpen = false;
-  let leadStep = 0; // 0=greeting 1=name 2=phone 3=email 4=chat
+  let leadStep = 0; // 0=start 1=phone 2=name 3=email 4=chat
   const leadData = { name: '', phone: '', email: '' };
 
   function saveChatLead() {
@@ -2687,7 +2687,7 @@
       win.classList.add('open');
       btn.innerHTML = '<span style="font-size:1.4rem;color:var(--dark);">✕</span>';
       if (leadStep === 0) {
-        setTimeout(() => addBotMessage("Namaste! 🙏 Welcome to ZenVista Homes.\n\nMay I know your good name please?"), 400);
+        setTimeout(() => addBotMessage("Hello! 👋 Welcome to ZenVista Homes — India's Premium Real Estate Portal.\n\nI'm your personal property assistant. I'm here to help you find your dream home! 🏡\n\nTo get started, could you please share your mobile number?"), 400);
         leadStep = 1;
       }
     } else {
@@ -2742,15 +2742,15 @@
 
     // Lead capture flow
     if (leadStep === 1) {
-      leadData.name = text;
+      leadData.phone = text;
       leadStep = 2;
-      setTimeout(() => addBotMessage(`Nice to meet you, ${leadData.name}! 😊\n\nCould you please share your mobile number so our expert can assist you?`), 500);
+      setTimeout(() => addBotMessage(`Thank you! 📱\n\nMay I know your good name please?`), 500);
       return;
     }
     if (leadStep === 2) {
-      leadData.phone = text;
+      leadData.name = text;
       leadStep = 3;
-      setTimeout(() => addBotMessage(`Thank you! 📱\n\nPlease share your email ID so we can send you property details.`), 500);
+      setTimeout(() => addBotMessage(`Nice to meet you, ${leadData.name}! 😊\n\nCould you please share your email ID so we can send you property details and exclusive offers?`), 500);
       return;
     }
     if (leadStep === 3) {
@@ -2758,7 +2758,7 @@
       leadStep = 4;
       saveChatLead();
       document.getElementById('zv-quick-replies').style.display = 'none';
-      setTimeout(() => addBotMessage(`Perfect, ${leadData.name}! ✅ Your details are saved.\n\nAb main aapki help karne ke liye ready hun! 🏠\n\nACE Group projects, prices, locations — kuch bhi poochein!`), 500);
+      setTimeout(() => addBotMessage(`Thank you, ${leadData.name}! ✅ Your details have been saved.\n\nOur property expert will reach out to you shortly on ${leadData.phone}.\n\nMeanwhile, feel free to ask me anything about our properties, prices, or locations! 🏠`), 600);
       return;
     }
 
