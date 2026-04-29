@@ -4,6 +4,14 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ZenVista Homes – India's Premium Real Estate Portal</title>
+  <!-- Google Analytics 4 — Replace G-XXXXXXXXXX with your Measurement ID from analytics.google.com -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1854,25 +1862,25 @@
       <form class="enq-form" onsubmit="handleSubmit(event)">
         <h3>Send an Enquiry</h3>
         <div class="form-row">
-          <div class="form-group"><label>First Name</label><input type="text" placeholder="Rahul"/></div>
-          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Sharma"/></div>
+          <div class="form-group"><label>First Name *</label><input id="enqFirst" type="text" placeholder="Rahul" required/></div>
+          <div class="form-group"><label>Last Name</label><input id="enqLast" type="text" placeholder="Sharma"/></div>
         </div>
-        <div class="form-group"><label>Email Address</label><input type="email" placeholder="rahul@example.com"/></div>
-        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+91 98765 43210"/></div>
+        <div class="form-group"><label>Email Address</label><input id="enqEmail" type="email" placeholder="rahul@example.com"/></div>
+        <div class="form-group"><label>Phone Number *</label><input id="enqPhone" type="tel" placeholder="+91 98765 43210" required/></div>
         <div class="form-row">
           <div class="form-group">
             <label>I'm Looking To</label>
-            <select><option>Buy a Property</option><option>Rent a Property</option><option>Sell My Property</option><option>Rent Out My Property</option><option>Investment Advice</option></select>
+            <select id="enqLooking"><option>Buy a Property</option><option>Rent a Property</option><option>Sell My Property</option><option>Rent Out My Property</option><option>Investment Advice</option></select>
           </div>
           <div class="form-group">
             <label>Property Type</label>
-            <select><option>Apartment / Flat</option><option>Independent House / Villa</option><option>Builder Floor</option><option>Plot / Land</option></select>
+            <select id="enqPropType"><option>Apartment / Flat</option><option>Independent House / Villa</option><option>Builder Floor</option><option>Plot / Land</option></select>
           </div>
         </div>
         <div class="form-group"><label>Budget Range</label>
-          <select><option>Under ₹50 Lac</option><option>₹50 Lac – 1 Cr</option><option>₹1–2 Cr</option><option>₹2–5 Cr</option><option>₹5 Cr+</option></select>
+          <select id="enqBudget"><option>Under ₹50 Lac</option><option>₹50 Lac – 1 Cr</option><option>₹1–2 Cr</option><option>₹2–5 Cr</option><option>₹5 Cr+</option></select>
         </div>
-        <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your requirements — location, size, amenities…"></textarea></div>
+        <div class="form-group"><label>Message</label><textarea id="enqMessage" placeholder="Tell us about your requirements — location, size, amenities…"></textarea></div>
         <button type="submit" class="submit-btn">Send Enquiry →</button>
       </form>
     </div>
@@ -2104,12 +2112,39 @@
     btn.textContent = on ? '♡' : '♥';
     btn.style.color = on ? '' : '#e74c3c';
   }
-  function handleSubmit(e) {
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyGlgyc6cwlYawimpDxlCMhV7eQuiiUsLqXyMGh5FSKrlqkxgr8rdfP_R56N00iu16v2w/exec';
+
+  async function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('.submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    const data = {
+      firstName:    document.getElementById('enqFirst').value,
+      lastName:     document.getElementById('enqLast').value,
+      email:        document.getElementById('enqEmail').value,
+      phone:        document.getElementById('enqPhone').value,
+      lookingTo:    document.getElementById('enqLooking').value,
+      propertyType: document.getElementById('enqPropType').value,
+      budget:       document.getElementById('enqBudget').value,
+      message:      document.getElementById('enqMessage').value
+    };
+
+    try {
+      await fetch(SHEET_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+    } catch(err) {}
+
     btn.textContent = '✓ Enquiry Sent!';
     btn.style.background = '#2d6a4f';
-    setTimeout(() => { btn.textContent = 'Send Enquiry →'; btn.style.background = ''; }, 3000);
+    btn.disabled = false;
+    e.target.reset();
+    setTimeout(() => { btn.textContent = 'Send Enquiry →'; btn.style.background = ''; }, 4000);
   }
   const projData = {
     starlit: {
