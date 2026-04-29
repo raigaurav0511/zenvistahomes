@@ -2664,6 +2664,20 @@
   // ── ZenVista AI Chatbot ──
   const chatMessages = [];
   let chatOpen = false;
+  let leadStep = 0; // 0=greeting 1=name 2=phone 3=email 4=chat
+  const leadData = { name: '', phone: '', email: '' };
+
+  function saveChatLead() {
+    fetch(SHEET_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        firstName: leadData.name, lastName: '', email: leadData.email,
+        phone: leadData.phone, lookingTo: 'Chat Lead', propertyType: '',
+        budget: '', message: 'Lead via Chatbot'
+      })
+    }).catch(() => {});
+  }
 
   function toggleChat() {
     chatOpen = !chatOpen;
@@ -2672,7 +2686,10 @@
     if (chatOpen) {
       win.classList.add('open');
       btn.innerHTML = '<span style="font-size:1.4rem;color:var(--dark);">✕</span>';
-      if (chatMessages.length === 0) addBotMessage("Namaste! 🙏 I'm ZenVista AI, your personal real estate assistant.\n\nAap kaise help kar sakta hun? Ask me about ACE Group projects, prices, locations, or site visits!");
+      if (leadStep === 0) {
+        setTimeout(() => addBotMessage("Namaste! 🙏 Welcome to ZenVista Homes.\n\nMay I know your good name please?"), 400);
+        leadStep = 1;
+      }
     } else {
       win.classList.remove('open');
       btn.innerHTML = '<img src="logo.png" alt="ZenVista AI" style="width:100%;height:100%;object-fit:contain;"/><span class="chat-badge">AI</span>';
@@ -2721,22 +2738,47 @@
     if (!text) return;
     input.value = '';
     input.style.height = 'auto';
-    document.getElementById('zv-quick-replies').style.display = 'none';
     addUserMessage(text);
+
+    // Lead capture flow
+    if (leadStep === 1) {
+      leadData.name = text;
+      leadStep = 2;
+      setTimeout(() => addBotMessage(`Nice to meet you, ${leadData.name}! 😊\n\nCould you please share your mobile number so our expert can assist you?`), 500);
+      return;
+    }
+    if (leadStep === 2) {
+      leadData.phone = text;
+      leadStep = 3;
+      setTimeout(() => addBotMessage(`Thank you! 📱\n\nPlease share your email ID so we can send you property details.`), 500);
+      return;
+    }
+    if (leadStep === 3) {
+      leadData.email = text;
+      leadStep = 4;
+      saveChatLead();
+      document.getElementById('zv-quick-replies').style.display = 'none';
+      setTimeout(() => addBotMessage(`Perfect, ${leadData.name}! ✅ Your details are saved.\n\nAb main aapki help karne ke liye ready hun! 🏠\n\nACE Group projects, prices, locations — kuch bhi poochein!`), 500);
+      return;
+    }
+
+    // Normal AI chat (after lead capture)
+    document.getElementById('zv-quick-replies').style.display = 'none';
     showTyping();
     document.getElementById('zv-chat-send').disabled = true;
     try {
+      const msgs = chatMessages.filter(m => m.role === 'user' || m.role === 'assistant').slice(-10);
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: chatMessages.filter(m => m.role !== 'assistant' || chatMessages.indexOf(m) > chatMessages.length - 10) })
+        body: JSON.stringify({ messages: msgs })
       });
       const data = await res.json();
       hideTyping();
       addBotMessage(data.reply || 'Sorry, kuch issue aa gaya. Please call +91 97586 00261.');
     } catch(e) {
       hideTyping();
-      addBotMessage('Abhi AI response mein thodi dikkat hai. 🙏\n\nHamari team se seedha baat karein:\n📞 +91 97586 00261\n📞 +91 84483 73492\n✉ shobha@zenvistahomes.com');
+      addBotMessage('Network issue. Please try again or call +91 97586 00261.');
     }
     document.getElementById('zv-chat-send').disabled = false;
   }
