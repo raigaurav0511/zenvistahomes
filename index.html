@@ -2702,16 +2702,23 @@
   let leadStep = 0; // 0=start 1=phone 2=name 3=email 4=chat
   const leadData = { name: '', phone: '', email: '' };
 
-  function saveChatLead() {
+  function saveChatLead(isRevisit) {
     fetch(SHEET_URL, {
       method: 'POST', mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         firstName: leadData.name, lastName: '', email: leadData.email,
-        phone: leadData.phone, lookingTo: 'Chat Lead', propertyType: '',
-        budget: '', message: 'Lead via Chatbot'
+        phone: leadData.phone, lookingTo: isRevisit ? 'Revisit - Chat' : 'Chat Lead',
+        propertyType: '', budget: '',
+        message: isRevisit ? 'Duplicate - Returning visitor via Chatbot' : 'New Lead via Chatbot'
       })
     }).catch(() => {});
+    // Save to localStorage so we detect on next visit
+    localStorage.setItem('zvLead', JSON.stringify({ name: leadData.name, phone: leadData.phone, email: leadData.email }));
+  }
+
+  function getStoredLead() {
+    try { return JSON.parse(localStorage.getItem('zvLead')); } catch(e) { return null; }
   }
 
   function dismissPopup() {
@@ -2740,8 +2747,19 @@
       win.classList.add('open');
       btn.innerHTML = '<span style="font-size:1.4rem;color:var(--dark);">✕</span>';
       if (leadStep === 0) {
-        setTimeout(() => addBotMessage("Hello! 👋 Welcome to ZenVista Homes — India's Premium Real Estate Portal.\n\nI'm your personal property assistant. I'm here to help you find your dream home! 🏡\n\nTo get started, could you please share your mobile number?"), 400);
-        leadStep = 1;
+        const stored = getStoredLead();
+        if (stored && stored.phone) {
+          // Returning visitor — mark as duplicate revisit
+          leadData.name = stored.name;
+          leadData.phone = stored.phone;
+          leadData.email = stored.email;
+          leadStep = 4;
+          saveChatLead(true);
+          setTimeout(() => addBotMessage(`Welcome back, ${stored.name}! 👋 Great to see you again!\n\nOur team will reach you on ${stored.phone}.\n\nFeel free to ask anything about our properties! 🏠`), 400);
+        } else {
+          setTimeout(() => addBotMessage("Hello! 👋 Welcome to ZenVista Homes — India's Premium Real Estate Portal.\n\nI'm your personal property assistant. I'm here to help you find your dream home! 🏡\n\nTo get started, could you please share your mobile number?"), 400);
+          leadStep = 1;
+        }
       }
     } else {
       win.classList.remove('open');
@@ -2809,7 +2827,7 @@
     if (leadStep === 3) {
       leadData.email = text;
       leadStep = 4;
-      saveChatLead();
+      saveChatLead(false);
       document.getElementById('zv-quick-replies').style.display = 'none';
       setTimeout(() => addBotMessage(`Thank you, ${leadData.name}! ✅ Your details have been saved.\n\nOur property expert will reach out to you shortly on ${leadData.phone}.\n\nMeanwhile, feel free to ask me anything about our properties, prices, or locations! 🏠`), 600);
       return;
