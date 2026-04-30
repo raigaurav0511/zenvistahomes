@@ -2149,6 +2149,36 @@
   }
   const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyGlgyc6cwlYawimpDxlCMhV7eQuiiUsLqXyMGh5FSKrlqkxgr8rdfP_R56N00iu16v2w/exec';
 
+  // ── Behavior Tracking ──────────────────────────────────
+  const _zvSession = 'S' + Date.now() + Math.random().toString(36).substr(2,5).toUpperCase();
+  const _zvStart   = Date.now();
+
+  function trackEvent(action, detail) {
+    const payload = JSON.stringify({
+      type: 'track',
+      sessionId: _zvSession,
+      action: action,
+      detail: detail,
+      timeOnSite: Math.round((Date.now() - _zvStart) / 1000)
+    });
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(SHEET_URL, payload);
+    } else {
+      fetch(SHEET_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body: payload }).catch(()=>{});
+    }
+  }
+
+  // Track initial page visit
+  window.addEventListener('load', () => trackEvent('Page View', 'ZenVista Homes - Home'));
+
+  // Track time on site when visitor leaves
+  window.addEventListener('beforeunload', () => {
+    const secs = Math.round((Date.now() - _zvStart) / 1000);
+    const mins = Math.floor(secs / 60), s = secs % 60;
+    trackEvent('Page Exit', `Time on site: ${mins}m ${s}s`);
+  });
+  // ─────────────────────────────────────────────────────
+
   async function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('.submit-btn');
@@ -2349,6 +2379,7 @@
   function openFeatModal(id) {
     const p = featData[id];
     if (!p) return;
+    trackEvent('Featured Property Click', p.name + ' | ' + (p.loc || '') + ' | ' + (p.price || ''));
     const typeColor = p.type==='For Rent'?'#e67e22':p.type==='New Launch'?'#1e3a5f':'#2d6a4f';
     document.getElementById('lmImg').src = p.img;
     document.getElementById('lmImg').alt = p.name;
@@ -2453,6 +2484,7 @@
   function openCityModal(cityKey) {
     const ids = cityProjects[cityKey] || [];
     const title = cityNames[cityKey] || cityKey;
+    trackEvent('City Click', title);
     document.getElementById('cityModalTitle').textContent = title;
     const body = document.getElementById('cityModalBody');
     if (ids.length === 0) {
@@ -2508,6 +2540,7 @@
   function openProjModal(id) {
     const p = projData[id];
     if (!p) return;
+    trackEvent('Project Click', p.name + ' | ' + (p.loc || '') + ' | ' + (p.price || ''));
     document.getElementById('pmImg').src = p.img;
     document.getElementById('pmImg').alt = p.name;
     document.getElementById('pmBadge').textContent = p.badge;
