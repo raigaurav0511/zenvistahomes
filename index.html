@@ -2699,8 +2699,8 @@
   // ── ZenVista AI Chatbot ──
   const chatMessages = [];
   let chatOpen = false;
-  let leadStep = 0; // 0=start 1=phone 2=name 3=email 4=chat
-  const leadData = { name: '', phone: '', email: '' };
+  let leadStep = 0; // 0=start 1=phone 2=name 3=budget 4=project 5=email 6=chat
+  const leadData = { name: '', phone: '', email: '', budget: '', project: '' };
 
   function saveChatLead(isRevisit) {
     fetch(SHEET_URL, {
@@ -2709,11 +2709,10 @@
       body: JSON.stringify({
         firstName: leadData.name, lastName: '', email: leadData.email,
         phone: leadData.phone, lookingTo: isRevisit ? 'Revisit - Chat' : 'Chat Lead',
-        propertyType: '', budget: '',
+        propertyType: leadData.project, budget: leadData.budget,
         message: isRevisit ? 'Duplicate - Returning visitor via Chatbot' : 'New Lead via Chatbot'
       })
     }).catch(() => {});
-    // Save to localStorage so we detect on next visit
     localStorage.setItem('zvLead', JSON.stringify({ name: leadData.name, phone: leadData.phone, email: leadData.email }));
   }
 
@@ -2731,9 +2730,9 @@
     if (!chatOpen) document.getElementById('zv-chat-popup').classList.add('show');
   }, 4000);
 
-  // Re-show popup every 30 seconds if chat not opened
+  // Re-show popup every 30 seconds if chat not yet started
   setInterval(() => {
-    if (!chatOpen && leadStep === 0) {
+    if (!chatOpen && leadStep < 2) {
       document.getElementById('zv-chat-popup').classList.add('show');
     }
   }, 30000);
@@ -2822,7 +2821,7 @@
         if (data.found && data.name) {
           leadData.name = data.name;
           leadData.email = data.email || '';
-          leadStep = 4;
+          leadStep = 6;
           saveChatLead(true);
           setTimeout(() => addBotMessage(`Welcome back, ${leadData.name}! 👋 Great to see you again!\n\nOur team will reach you on ${leadData.phone}.\n\nFeel free to ask me anything about our properties! 🏠`), 300);
         } else {
@@ -2839,19 +2838,31 @@
     if (leadStep === 2) {
       leadData.name = text;
       leadStep = 3;
-      setTimeout(() => addBotMessage(`Nice to meet you, ${leadData.name}! 😊\n\nCould you please share your email ID so we can send you property details and exclusive offers?`), 500);
+      setTimeout(() => addBotMessage(`Nice to meet you, ${leadData.name}! 😊\n\nWhat is your budget for the property?\n(e.g. 80 Lakhs, 1.5 Cr, 2 Cr+)`), 400);
       return;
     }
     if (leadStep === 3) {
-      leadData.email = text;
+      leadData.budget = text;
       leadStep = 4;
+      setTimeout(() => addBotMessage(`Great! 💰\n\nWhich ACE Group project are you interested in?\n(e.g. ACE Aspire, ACE Parkway, ACE Starlit, ACE Terra, etc.)`), 400);
+      return;
+    }
+    if (leadStep === 4) {
+      leadData.project = text;
+      leadStep = 5;
+      setTimeout(() => addBotMessage(`Excellent choice! 🏡\n\nCould you please share your email ID so we can send you detailed brochures and exclusive offers?`), 400);
+      return;
+    }
+    if (leadStep === 5) {
+      leadData.email = text;
+      leadStep = 6;
       saveChatLead(false);
       document.getElementById('zv-quick-replies').style.display = 'none';
-      setTimeout(() => addBotMessage(`Thank you, ${leadData.name}! ✅ Your details have been saved.\n\nOur property expert will reach out to you shortly on ${leadData.phone}.\n\nMeanwhile, feel free to ask me anything about our properties, prices, or locations! 🏠`), 600);
+      setTimeout(() => addBotMessage(`Thank you, ${leadData.name}! ✅ Your details have been saved.\n\nOur property expert will reach out to you shortly on ${leadData.phone}.\n\nMeanwhile, feel free to ask me anything about our properties, prices, or locations! 🏠`), 500);
       return;
     }
 
-    // Normal AI chat (after lead capture)
+    // Normal AI chat (after lead capture complete at step 6)
     document.getElementById('zv-quick-replies').style.display = 'none';
     showTyping();
     document.getElementById('zv-chat-send').disabled = true;
@@ -2864,7 +2875,7 @@
       });
       const data = await res.json();
       hideTyping();
-      addBotMessage(data.reply || 'Sorry, kuch issue aa gaya. Please call +91 97586 00261.');
+      addBotMessage(data.reply || 'Sorry, something went wrong. Please call +91 97586 00261.');
     } catch(e) {
       hideTyping();
       addBotMessage('Network issue. Please try again or call +91 97586 00261.');
