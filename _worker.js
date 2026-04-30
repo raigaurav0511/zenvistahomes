@@ -1,3 +1,5 @@
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbyGlgyc6cwlYawimpDxlCMhV7eQuiiUsLqXyMGh5FSKrlqkxgr8rdfP_R56N00iu16v2w/exec';
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -11,9 +13,31 @@ export default {
       }
     }
 
+    if (url.pathname === '/api/check-lead') {
+      if (request.method === 'OPTIONS') {
+        return new Response(null, { headers: corsHeaders() });
+      }
+      if (request.method === 'GET') {
+        return handleCheckLead(request);
+      }
+    }
+
     return env.ASSETS.fetch(request);
   }
 };
+
+async function handleCheckLead(request) {
+  try {
+    const url = new URL(request.url);
+    const phone = url.searchParams.get('phone') || '';
+    const checkUrl = SHEET_URL + '?action=checkPhone&phone=' + encodeURIComponent(phone);
+    const res = await fetch(checkUrl, { redirect: 'follow' });
+    const data = await res.json();
+    return new Response(JSON.stringify(data), { headers: corsHeaders() });
+  } catch (err) {
+    return new Response(JSON.stringify({ found: false }), { headers: corsHeaders() });
+  }
+}
 
 async function handleChat(request, env) {
   try {
@@ -75,7 +99,7 @@ function corsHeaders() {
   return {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type'
   };
 }

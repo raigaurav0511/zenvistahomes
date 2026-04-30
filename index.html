@@ -2813,9 +2813,27 @@
 
     // Lead capture flow
     if (leadStep === 1) {
-      leadData.phone = text;
-      leadStep = 2;
-      setTimeout(() => addBotMessage(`Thank you! 📱\n\nMay I know your good name please?`), 500);
+      leadData.phone = text.replace(/\s+/g, '').replace(/-/g, '');
+      showTyping();
+      try {
+        const res = await fetch('/api/check-lead?phone=' + encodeURIComponent(leadData.phone));
+        const data = await res.json();
+        hideTyping();
+        if (data.found && data.name) {
+          leadData.name = data.name;
+          leadData.email = data.email || '';
+          leadStep = 4;
+          saveChatLead(true);
+          setTimeout(() => addBotMessage(`Welcome back, ${leadData.name}! 👋 Great to see you again!\n\nOur team will reach you on ${leadData.phone}.\n\nFeel free to ask me anything about our properties! 🏠`), 300);
+        } else {
+          leadStep = 2;
+          setTimeout(() => addBotMessage(`Thank you! 📱\n\nMay I know your good name please?`), 300);
+        }
+      } catch(err) {
+        hideTyping();
+        leadStep = 2;
+        setTimeout(() => addBotMessage(`Thank you! 📱\n\nMay I know your good name please?`), 300);
+      }
       return;
     }
     if (leadStep === 2) {
